@@ -71,7 +71,7 @@ class RegistrationPage extends StatelessWidget {
                   // تحقق من صحة المدخلات
                   if (passwordController.text ==
                       confirmPasswordController.text) {
-                    // إرسال البيانات إلى السيرفر أو قاعدة البيانات
+                    // إرسال البيانات إلى السيرفر أو قاعدة البيانات المفروض
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Account created successfully!'),
