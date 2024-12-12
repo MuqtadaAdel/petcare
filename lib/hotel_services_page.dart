@@ -1,4 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:pet_hotel_app/veterinary_services_page.dart';
+
+import 'HotelPage.dart';
+import 'PetHotelPage.dart';
+import 'PetProductsPage.dart';
+import 'adoption_page.dart';
+import 'animalsitters.dart';
+import 'comunity.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Pet Services',
+      initialRoute: '/', // تعيين الصفحة الرئيسية
+      routes: {
+        '/': (context) => const ServicesPage(),
+        '/adoption': (context) => const AdoptionPage(),
+        '/PetHotelPage': (context) => PetHotelPage(),
+        '/PetProductsPage': (context) => PetProductsPage(),
+        '/veterinary_services': (context) => const VeterinaryPage(),
+        '/community': (context) => CommunityPage(),
+        '/animalsitter': (context) => AnimalSitterPage(),
+        '/HotelPage': (context) => const HotelPage(),
+      },
+    );
+  }
+}
 
 class ServicesPage extends StatefulWidget {
   const ServicesPage({super.key});
@@ -10,7 +44,6 @@ class ServicesPage extends StatefulWidget {
 class _ServicesPageState extends State<ServicesPage> {
   int _currentIndex = 0;
 
-  // قائمة الصفحات المرتبطة بـ BottomNavigationBar
   final List<Widget> _pages = [
     ServiceGrid(), // شبكة الخدمات (Services)
     PetsPage(),    // صفحة الحيوانات (Pets)
@@ -26,7 +59,7 @@ class _ServicesPageState extends State<ServicesPage> {
           'Pet Services',
           style: TextStyle(color: Colors.black),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xFFFF8C42),
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
       ),
@@ -52,7 +85,7 @@ class _ServicesPageState extends State<ServicesPage> {
             label: 'Settings',
           ),
         ],
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Colors.yellow,
         unselectedItemColor: Colors.grey,
       ),
     );
@@ -61,6 +94,8 @@ class _ServicesPageState extends State<ServicesPage> {
 
 // شبكة الخدمات (صفحة Services)
 class ServiceGrid extends StatelessWidget {
+  const ServiceGrid({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -73,7 +108,7 @@ class ServiceGrid extends StatelessWidget {
           _buildServiceCard(
             context,
             icon: Icons.pets,
-            color: Colors.blue,
+            color: const Color(0xFFFF8C42),
             title: 'Adoption',
             onTap: () {
               Navigator.of(context).pushNamed("/adoption");
@@ -81,8 +116,8 @@ class ServiceGrid extends StatelessWidget {
           ),
           _buildServiceCard(
             context,
-            icon: Icons.local_hotel,
-            color: Colors.pink,
+            icon: Icons.folder_special_outlined,
+            color: Colors.orangeAccent,
             title: 'Pet Hotel',
             onTap: () {
               Navigator.of(context).pushNamed("/PetHotelPage");
@@ -91,7 +126,7 @@ class ServiceGrid extends StatelessWidget {
           _buildServiceCard(
             context,
             icon: Icons.shopping_bag,
-            color: Colors.green,
+            color: Colors.orangeAccent,
             title: 'Pet Products',
             onTap: () {
               Navigator.of(context).pushNamed("/PetProductsPage");
@@ -100,10 +135,37 @@ class ServiceGrid extends StatelessWidget {
           _buildServiceCard(
             context,
             icon: Icons.medical_services,
-            color: Colors.orange,
+            color: const Color(0xFFFF8C42),
             title: 'Veterinary',
             onTap: () {
               Navigator.of(context).pushNamed("/veterinary_services");
+            },
+          ),
+          _buildServiceCard(
+            context,
+            icon: Icons.insert_comment_outlined,
+            color: const Color(0xFFFF8C42),
+            title: 'Community',
+            onTap: () {
+              Navigator.of(context).pushNamed("/community");
+            },
+          ),
+          _buildServiceCard(
+            context,
+            icon: Icons.perm_contact_cal,
+            color: const Color(0xFFFF8C42),
+            title: 'Animal Sitter',
+            onTap: () {
+              Navigator.of(context).pushNamed("/animalsitter");
+            },
+          ),
+          _buildServiceCard(
+            context,
+            icon: Icons.home_filled,
+            color: const Color(0xFFFF8C42),
+            title: 'Hotels',
+            onTap: () {
+              Navigator.of(context).pushNamed("/HotelPage");
             },
           ),
         ],
@@ -114,9 +176,9 @@ class ServiceGrid extends StatelessWidget {
   // تصميم بطاقة الخدمة
   Widget _buildServiceCard(BuildContext context,
       {required IconData icon,
-      required Color color,
-      required String title,
-      required VoidCallback onTap}) {
+        required Color color,
+        required String title,
+        required VoidCallback onTap}) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -148,13 +210,74 @@ class ServiceGrid extends StatelessWidget {
 }
 
 // صفحة الحيوانات (Pets)
-class PetsPage extends StatelessWidget {
+class PetsPage extends StatefulWidget {
+  const PetsPage({super.key});
+
+  @override
+  _PetsPageState createState() => _PetsPageState();
+}
+
+class _PetsPageState extends State<PetsPage> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'Pets Page',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Pets Page'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Our Pet Services:',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'We offer a variety of services for your pets including grooming, training, and medical checkups.',
+              style: TextStyle(fontSize: 18),
+            ),
+            const SizedBox(height: 20),
+            const Text(
+              'Available Pets:',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              '1. Dog - Max, Labrador Retriever',
+              style: TextStyle(fontSize: 18),
+            ),
+            const Text(
+              '2. Cat - Bella, Persian',
+              style: TextStyle(fontSize: 18),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // عند الضغط على الزر، تظهر نافذة منبثقة (Dialog) للتأكيد.
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Thank You'),
+                      content: const Text('Your pet service request has been successfully submitted!'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(); // إغلاق النافذة المنبثقة عند الضغط على OK
+                          },
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: const Text('Book a Service'),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -162,12 +285,66 @@ class PetsPage extends StatelessWidget {
 
 // صفحة الإعدادات (Settings)
 class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'Settings Page',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Settings'),
+      ),
+      body: ListView(
+        children: [
+          ListTile(
+            leading: const Icon(Icons.language),
+            title: const Text("Language"),
+            onTap: () {
+              // Language selection
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.palette),
+            title: const Text("Theme"),
+            onTap: () {
+              // Theme customization
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.lock),
+            title: const Text("Privacy Settings"),
+            onTap: () {
+              // Go to privacy settings page
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.payment),
+            title: const Text("Payment Settings"),
+            onTap: () {
+              // Go to payment settings page
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.help),
+            title: const Text("Help & Support"),
+            onTap: () {
+              // Go to help page
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.info),
+            title: const Text("About"),
+            onTap: () {
+              // About page
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.exit_to_app),
+            title: const Text("Logout"),
+            onTap: () {
+              // Logout
+            },
+          ),
+        ],
       ),
     );
   }

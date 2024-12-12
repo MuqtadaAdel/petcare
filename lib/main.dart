@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pet_hotel_app/ForgotPasswordPage.dart';
-import 'package:pet_hotel_app/PetProductsPage.dart';
-import 'package:pet_hotel_app/RegistrationPage.dart';
+import 'ForgotPasswordPage.dart';
+import 'HotelPage.dart';
+import 'PetProductsPage.dart';
+import 'RegistrationPage.dart';
+import 'animalsitters.dart';
+import 'comunity.dart';
 import 'login_page.dart';
 import 'hotel_services_page.dart';
 import 'adoption_page.dart';
@@ -25,12 +28,17 @@ class MyApp extends StatelessWidget {
         '/': (context) => const LoginPage(),
         '/RegistrationPage': (context) => RegistrationPage(),
         '/ForgotPasswordPage':(context) => ForgotPasswordPage(),
-        '/hotel_services': (context) => const ServicesPage(),
+        '/hotel_services': (context) =>  const ServicesPage(),
         '/adoption': (context) => const AdoptionPage(),
-        '/PetHotelPage': (context) => PetHotelPage(),
-        '/veterinary_services': (context) => VeterinaryServicesPage(),
+        '/PetHotelPage': (context) => const PetHotelPage(),
+        '/veterinary_services': (context) => const VeterinaryPage(),
         '/PetProductsPage': (context) => PetProductsPage(),
-        
+        '/community': (context) => const CommunityPage(),
+        '/animalsitter': (context) => const AnimalSitterPage(),
+        '/HotelPage': (context) => const HotelPage(),
+        '/petspage': (context) => const PetsPage(),
+
+
 
       },
     );

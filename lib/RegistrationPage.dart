@@ -36,7 +36,7 @@ class RegistrationPage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
-                  color: Colors.blue,
+                  color: Color(0xFFFFB74D),
                 ),
               ),
               const SizedBox(height: 20),
@@ -87,7 +87,7 @@ class RegistrationPage extends StatelessWidget {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: const Color(0xFFFFB74D),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -105,7 +105,7 @@ class RegistrationPage extends StatelessWidget {
                 },
                 child: const Text(
                   'Already have an account? Login',
-                  style: TextStyle(color: Colors.blue),
+                  style: TextStyle(color: Color(0xFFFFB74D)),
                 ),
               ),
             ],

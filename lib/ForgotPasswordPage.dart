@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class ForgotPasswordPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
 
+  ForgotPasswordPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +31,7 @@ class ForgotPasswordPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
-                color: Colors.blue,
+                color: Color(0xFFFFB74D),
               ),
             ),
             const SizedBox(height: 20),
@@ -80,7 +82,7 @@ class ForgotPasswordPage extends StatelessWidget {
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: const Color(0xFFFFB74D),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -99,7 +101,7 @@ class ForgotPasswordPage extends StatelessWidget {
               },
               child: const Text(
                 'Back to Login',
-                style: TextStyle(color: Colors.blue),
+                style: TextStyle(color: Color(0xFFFFB74D)),
               ),
             ),
           ],

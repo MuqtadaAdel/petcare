@@ -62,10 +62,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/dog_image.png
-    - assets/cat_icon.png
-    - assets/dog_icon.png
-    - assets/rabbit_icon.avif
+    - images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -92,7 +89,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
-flutter_icons:
+images/rabbit2:
+  jpg:flutter_icons:
   android: true
   ios: true
-  image_path: "assets/cat_icon.png" # المسار إلى صورة الأيقونة
+  image_path: "images/cat_icon.png" # المسار إلى صورة الأيقونة

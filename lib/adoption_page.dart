@@ -3,27 +3,35 @@ import 'package:flutter/material.dart';
 class AdoptionPage extends StatelessWidget {
   const AdoptionPage({super.key});
 
+  // قائمة الحيوانات مع الصور المحلية
   List<Map<String, String>> get pets => [
-    {'name': 'Bella', 'image': 'assets/dog_icon.png', 'age': '2 years'},
-    {'name': 'Max', 'image': 'assets/dog_image.png', 'age': '3 years'},
-    {'name': 'Kitty', 'image': 'assets/cat_icon.png', 'age': '1 year'},
-    {'name': 'Simba', 'image': 'assets/rabbit_icon.avif', 'age': '1.5 years'},
+    {'name': 'Bella', 'image': 'images/cat1.jpg', 'age': '2 years'},
+    {'name': 'Max', 'image': 'images/cat1.jpg', 'age': '3 years'},
+    {'name': 'Kitty', 'image': 'images/cat1.jpg', 'age': '1 year'},
+    {'name': 'Simba', 'image': 'images/cat1.jpg', 'age': '1.5 years'},
+    {'name': 'Charlie', 'image': 'images/cat1.jpg', 'age': '4 years'},
+    {'name': 'Milo', 'image': 'images/cat2.jpg', 'age': '6 months'},
+    {'name': 'Lola', 'image': 'images/cat3.jpg', 'age': '8 months'},
+    {'name': 'Oscar', 'image': 'images/rabbit2.jpg', 'age': '2 years'},
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlue[50],
+      backgroundColor: const Color(0xFFFFF3E0), // لون برتقالي فاتح جدًا
       appBar: AppBar(
-        title: const Text('Adoption'),
-        backgroundColor: Colors.white,
+        title: const Text(
+          'Adoption',
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.orange.shade100, // لون برتقالي فاتح
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: GridView.builder(
         padding: const EdgeInsets.all(16.0),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
+          crossAxisCount: 2, // عرض شبكي (2 أعمدة)
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
         ),
@@ -32,34 +40,10 @@ class AdoptionPage extends StatelessWidget {
           final pet = pets[index];
           return GestureDetector(
             onTap: () {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    title: Text('Adopt ${pet['name']}'),
-                    content: Text('Do you want to adopt ${pet['name']}?'),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text('Cancel'),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text('${pet['name']} adopted!'),
-                          ));
-                        },
-                        child: const Text('Adopt'),
-                      ),
-                    ],
-                  );
-                },
-              );
+              _showAdoptionDialog(context, pet);
             },
             child: Card(
+              color: Colors.orange.shade50, // خلفية البطاقة بلون برتقالي فاتح جدًا
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16.0),
               ),
@@ -70,7 +54,8 @@ class AdoptionPage extends StatelessWidget {
                   Expanded(
                     child: ClipRRect(
                       borderRadius: const BorderRadius.vertical(
-                          top: Radius.circular(16.0)),
+                        top: Radius.circular(16.0),
+                      ),
                       child: Image.asset(
                         pet['image']!,
                         fit: BoxFit.cover,
@@ -85,9 +70,15 @@ class AdoptionPage extends StatelessWidget {
                         Text(
                           pet['name']!,
                           style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
                         ),
-                        Text('Age: ${pet['age']}'),
+                        Text(
+                          'Age: ${pet['age']}',
+                          style: const TextStyle(color: Colors.black54),
+                        ),
                       ],
                     ),
                   ),
@@ -97,6 +88,50 @@ class AdoptionPage extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+
+  // نافذة تأكيد التبني
+  void _showAdoptionDialog(BuildContext context, Map<String, String> pet) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.orange.shade50, // لون خلفية النافذة
+          title: Text(
+            'Adopt ${pet['name']}',
+            style: const TextStyle(color: Colors.black),
+          ),
+          content: Text(
+            'Do you want to adopt ${pet['name']}?',
+            style: const TextStyle(color: Colors.black87),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                'Cancel',
+                style: TextStyle(color: Colors.orange),
+              ),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.orange, // زر بلون برتقالي
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('${pet['name']} adopted!'),
+                  backgroundColor: Colors.orange,
+                ));
+              },
+              child: const Text('Adopt'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

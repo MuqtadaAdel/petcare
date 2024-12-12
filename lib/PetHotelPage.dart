@@ -1,67 +1,68 @@
 import 'package:flutter/material.dart';
 
-class PetHotelPage extends StatelessWidget {
-  PetHotelPage({super.key});
+class PetHotelPage extends StatefulWidget {
+  const PetHotelPage({super.key});
 
-  final List<Map<String, String>> roomOptions = [
+  @override
+  _PetHotelPageState createState() => _PetHotelPageState();
+}
+
+class _PetHotelPageState extends State<PetHotelPage> {
+  final List<Map<String, String>> serviceOptions = [
     {
-      'name': 'Standard Room',
-      'image': 'assets/cat_icon.png',
-      'price': '\$30/day'
+      'name': 'Pet Sitting',
+      'image': 'images/cat1.jpg',
+      'price': '\$25/session',
+      'description': 'Professional pet sitting services when you are away.'
     },
     {
-      'name': 'Grooming Suite',
-      'image': 'assets/cat_icon.png',
-      'price': '\$50/day'
+      'name': 'Pet Walking',
+      'image': 'images/cat1.jpg',
+      'price': '\$15/walk',
+      'description': 'Take your pet for a refreshing walk every day.'
     },
     {
-      'name': 'Walking Service',
-      'image': 'assets/cat_icon.png',
-      'price': '\$15/day'
+      'name': 'Training Session',
+      'image': 'images/cat1.jpg',
+      'price': '\$50/session',
+      'description': 'Help your pet learn new tricks and commands.'
     },
     {
-      'name': 'Special Room',
-      'image': 'assets/cat_icon.png',
-      'price': '\$70/day'
+      'name': 'Veterinary Check-up',
+      'image': 'images/cat1.jpg',
+      'price': '\$40/visit',
+      'description': 'Ensure your pet’s health with a full check-up.'
     },
   ];
+
+  String confirmationMessage = ''; // To store the confirmation message
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlue[50],
+      backgroundColor: const Color(0xFFFBE1A1), // Light orange color
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0,
+        elevation: 2,
         title: const Text(
-          'Pet Hotel',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          'Pet Services',
+          style: TextStyle(
+            color: Color(0xFF001D3F),
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: Color(0xFF001D3F)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // صورة الغرفة الرئيسية
-            Container(
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                image: const DecorationImage(
-                  image: AssetImage('assets/cat_icon.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            // قائمة الخيارات
             Expanded(
               child: ListView.builder(
-                itemCount: roomOptions.length,
+                itemCount: serviceOptions.length,
                 itemBuilder: (context, index) {
-                  final option = roomOptions[index];
+                  final option = serviceOptions[index];
                   return Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
@@ -80,15 +81,79 @@ class PetHotelPage extends StatelessWidget {
                       ),
                       title: Text(
                         option['name']!,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF001D3F),
+                        ),
                       ),
-                      subtitle: Text(option['price']!),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(option['description']!),
+                          Text(option['price']!,
+                              style: const TextStyle(
+                                  color: Color(0xFF04356A),
+                                  fontWeight: FontWeight.w600)),
+                        ],
+                      ),
                       trailing: ElevatedButton(
                         onPressed: () {
-                          // تنفيذ عملية الحجز
+                          // Controller for user input
+                          TextEditingController emailController =
+                          TextEditingController();
+                          TextEditingController nameController =
+                          TextEditingController();
+
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text('Book ${option['name']}'),
+                                content: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    TextField(
+                                      controller: nameController,
+                                      decoration: const InputDecoration(
+                                          hintText: 'Enter your name'),
+                                    ),
+                                    TextField(
+                                      controller: emailController,
+                                      decoration: const InputDecoration(
+                                          hintText: 'Enter your email'),
+                                    ),
+                                  ],
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('Cancel'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      final email = emailController.text;
+                                      final name = nameController.text;
+                                      if (email.isNotEmpty &&
+                                          name.isNotEmpty) {
+                                        // On Confirm, update the confirmation message
+                                        setState(() {
+                                          confirmationMessage =
+                                          'Check your email for booking details!';
+                                        });
+                                      }
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('Confirm'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
+                          backgroundColor: const Color(0xFFFF8C00), // Light orange color
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -100,25 +165,22 @@ class PetHotelPage extends StatelessWidget {
                 },
               ),
             ),
-            const SizedBox(height: 10),
-            // زر الحجز النهائي
-            ElevatedButton(
-              onPressed: () {
-                // تنفيذ الحجز النهائي
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+            if (confirmationMessage.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Container(
+                  color: Colors.white, // White background for the confirmation message
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  child: Text(
+                    confirmationMessage,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF04356A),
+                    ),
+                  ),
                 ),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 15, horizontal: 100),
               ),
-              child: const Text(
-                'Book Now',
-                style: TextStyle(fontSize: 18, color: Colors.white),
-              ),
-            ),
           ],
         ),
       ),
