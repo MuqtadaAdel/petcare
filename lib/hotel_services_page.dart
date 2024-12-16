@@ -118,7 +118,7 @@ class ServiceGrid extends StatelessWidget {
             context,
             icon: Icons.folder_special_outlined,
             color: Colors.orangeAccent,
-            title: 'Pet Hotel',
+            title: 'Pet Services',
             onTap: () {
               Navigator.of(context).pushNamed("/PetHotelPage");
             },

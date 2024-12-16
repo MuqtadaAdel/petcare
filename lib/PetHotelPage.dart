@@ -11,25 +11,25 @@ class _PetHotelPageState extends State<PetHotelPage> {
   final List<Map<String, String>> serviceOptions = [
     {
       'name': 'Pet Sitting',
-      'image': 'images/cat1.jpg',
+      'image': 'images/dogsitter.jpg',
       'price': '\$25/session',
       'description': 'Professional pet sitting services when you are away.'
     },
     {
       'name': 'Pet Walking',
-      'image': 'images/cat1.jpg',
+      'image': 'images/walk.jpg',
       'price': '\$15/walk',
       'description': 'Take your pet for a refreshing walk every day.'
     },
     {
       'name': 'Training Session',
-      'image': 'images/cat1.jpg',
+      'image': 'images/training.jpg',
       'price': '\$50/session',
       'description': 'Help your pet learn new tricks and commands.'
     },
     {
       'name': 'Veterinary Check-up',
-      'image': 'images/cat1.jpg',
+      'image': 'images/vchup.jpg',
       'price': '\$40/visit',
       'description': 'Ensure your pet’s health with a full check-up.'
     },

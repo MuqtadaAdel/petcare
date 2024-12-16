@@ -93,4 +93,4 @@ images/rabbit2:
   jpg:flutter_icons:
   android: true
   ios: true
-  image_path: "images/cat_icon.png" # المسار إلى صورة الأيقونة
+  image_path: "icon.jpg" # المسار إلى صورة الأيقونة

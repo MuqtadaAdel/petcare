@@ -6,32 +6,32 @@ class AdoptionPage extends StatelessWidget {
   // قائمة الحيوانات مع الصور المحلية
   List<Map<String, String>> get pets => [
     {'name': 'Bella', 'image': 'images/cat1.jpg', 'age': '2 years'},
-    {'name': 'Max', 'image': 'images/cat1.jpg', 'age': '3 years'},
-    {'name': 'Kitty', 'image': 'images/cat1.jpg', 'age': '1 year'},
-    {'name': 'Simba', 'image': 'images/cat1.jpg', 'age': '1.5 years'},
-    {'name': 'Charlie', 'image': 'images/cat1.jpg', 'age': '4 years'},
-    {'name': 'Milo', 'image': 'images/cat2.jpg', 'age': '6 months'},
-    {'name': 'Lola', 'image': 'images/cat3.jpg', 'age': '8 months'},
+    {'name': 'Max', 'image': 'images/cat2.jpg', 'age': '3 years'},
+    {'name': 'Kitty', 'image': 'images/cat3.jpg', 'age': '1 year'},
+    {'name': 'Simba', 'image': 'images/dog1.jpg', 'age': '1.5 years'},
+    {'name': 'Charlie', 'image': 'images/dog2.jpg', 'age': '4 years'},
+    {'name': 'Milo', 'image': 'images/dog3.jpg', 'age': '6 months'},
+    {'name': 'Lola', 'image': 'images/rabbit1.jpg', 'age': '8 months'},
     {'name': 'Oscar', 'image': 'images/rabbit2.jpg', 'age': '2 years'},
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF3E0), // لون برتقالي فاتح جدًا
+      backgroundColor: const Color(0xFFFFF3E0),
       appBar: AppBar(
         title: const Text(
           'Adoption',
           style: TextStyle(color: Colors.black),
         ),
-        backgroundColor: Colors.orange.shade100, // لون برتقالي فاتح
+        backgroundColor: Colors.orange.shade100,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: GridView.builder(
         padding: const EdgeInsets.all(16.0),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // عرض شبكي (2 أعمدة)
+          crossAxisCount: 2,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
         ),
@@ -43,7 +43,7 @@ class AdoptionPage extends StatelessWidget {
               _showAdoptionDialog(context, pet);
             },
             child: Card(
-              color: Colors.orange.shade50, // خلفية البطاقة بلون برتقالي فاتح جدًا
+              color: Colors.orange.shade50,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16.0),
               ),
@@ -97,7 +97,7 @@ class AdoptionPage extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Colors.orange.shade50, // لون خلفية النافذة
+          backgroundColor: Colors.orange.shade50,
           title: Text(
             'Adopt ${pet['name']}',
             style: const TextStyle(color: Colors.black),

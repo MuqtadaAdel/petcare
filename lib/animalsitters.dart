@@ -43,7 +43,7 @@ class AnimalSitterPage extends StatelessWidget {
                     location: index.isEven ? 'Baghdad' : 'Najaf', // Alternating locations
                     imageUrl: index.isEven
                         ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTas38VmttQHkQePvwteTstMV_Zq-n09KR3uA&s/150' // Female image
-                        : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Fmale_11195149&psig=AOvVaw3cLpyZjf9w6rdZoDdWsFVd&ust=1734051701573000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLCs25CEoYoDFQAAAAAdAAAAABAE', // Male image
+                        : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzegP-r-VB4mS_U3QCBDnFCVq8_j1MZmba219LGGQRm2E5w1GcAm-WS6ma698cm7xiUWw&usqp=CAU/150', // Male image
                   );
                 },
               ),
